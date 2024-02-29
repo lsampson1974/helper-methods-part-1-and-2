@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
   def new
     @the_movie = Movie.new
-
   end
 
   def index
@@ -21,12 +20,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    the_id = params.fetch(:id)
-
-    matching_movies = Movie.where( id: the_id )
-
-    @the_movie = matching_movies.first
-
+    @the_movie = Movie.find(params.fetch(:id))
   end
 
   def create
