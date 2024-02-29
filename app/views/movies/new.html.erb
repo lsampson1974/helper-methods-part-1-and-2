@@ -1,29 +1,30 @@
+
 <h1>New movie</h1>
 
 <% @movie.errors.full_messages.each do |message| %>
   <p style="color: red;"><%= message %></p>
 <% end %>
 
-<%= form_with(url: movies_path(@movie), data: { turbo: false }) do %>
-
-  <div>
-
-    <%= label_tag :title %>
-    <%= text_field_tag :title, @movie.title %>
-
-  </div>
-
-  <div>
-
-    <%= label_tag :description %>
-    <%= text_area_tag :description, @movie.description, { id: "description", rows: 3 } %>
-
-  </div>
-
-<%= button_tag "Create Movie" %>
-
-<% end %>
-
-<!--<form action="/movies" method="post" data-turbo="false">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<!--
+<%= form_with(url: movies_path(@movie), data: { turbo: false }) do |form| %>
 -->
+
+<%= form_with(model: @movie, data: { turbo: false }) do |form| %>
+  <div>
+
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+
+
+  </div>
+
+  <div>
+
+    <%= form.label :description %>
+    <%= form.text_area :description, { rows: 3 } %>
+
+  </div>
+
+<%= button_tag "Create Movie" %> 
+<% end %>
+<% end %>
