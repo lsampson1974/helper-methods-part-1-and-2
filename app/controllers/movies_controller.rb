@@ -4,23 +4,20 @@ class MoviesController < ApplicationController
   end
 
   def index
-    matching_movies = Movie.all
 
-    @list_of_movies = matching_movies.order( created_at: :desc )
+    @movies = Movie.order( created_at: :desc )
 
     respond_to do |format|
       format.json do
-        render json: @list_of_movies
+        render json: @movies
       end
 
-      format.html do
-        render "movies/index" 
-      end
+      format.html 
     end
   end
 
   def show
-    @the_movie = Movie.find(params.fetch(:id))
+    @movie = Movie.find(params.fetch(:id))
   end
 
   def create
